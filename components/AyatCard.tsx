@@ -15,17 +15,28 @@ export default function AyatCard({
     <div
       id="card"
       className="
-        w-full max-w-sm sm:max-w-md
-        rounded-2xl overflow-hidden shadow-xl
+        relative
+        w-full max-w-md
+        aspect-9/16
+        rounded-2xl overflow-hidden
+        shadow-xl
+        bg-black
       "
-      style={{
-        backgroundImage: `url(${background})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
     >
-      <div className="bg-black/60 p-6 text-center">
-        <p className="text-3xl sm:text-4xl leading-relaxed mb-4 font-arab">
+      {/* BACKGROUND IMAGE */}
+      <img
+        src={background}
+        alt="Background"
+        className="absolute inset-0 w-full h-full object-cover"
+        crossOrigin="anonymous"
+      />
+
+      {/* OVERLAY */}
+      <div className="absolute inset-0 bg-black/60" />
+
+      {/* CONTENT */}
+      <div className="relative z-10 h-full flex flex-col justify-center p-6 text-center text-white">
+        <p className="text-3xl sm:text-4xl leading-relaxed mb-4">
           {ayat.arab}
         </p>
 
