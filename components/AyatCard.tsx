@@ -1,3 +1,9 @@
+interface Ayat {
+  arab: string
+  arti: string
+  sumber: string
+}
+
 interface Props {
   ayat: Ayat
   background: string
@@ -7,18 +13,10 @@ export default function AyatCard({ ayat, background }: Props) {
   return (
     <div
       id="card"
-      className="
-        relative w-[1080px] h-[1920px]
-        rounded-[48px] p-24
-        text-white shadow-2xl
-        bg-cover bg-center
-        flex flex-col justify-between
-      "
-      style={{
-        backgroundImage: `url(${background})`,
-      }}
+      className="relative w-[1080px] h-[1920px] rounded-[48px] p-24
+      text-white shadow-2xl bg-cover bg-center flex flex-col justify-between"
+      style={{ backgroundImage: `url(${background})` }}
     >
-      {/* overlay */}
       <div className="absolute inset-0 bg-black/45 rounded-[48px]" />
 
       <div className="relative">
