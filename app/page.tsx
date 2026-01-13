@@ -3,7 +3,8 @@ import Link from 'next/link'
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center gap-6 p-6 bg-slate-50">
+    <main className="min-h-screen overflow-x-hidden flex flex-col items-center justify-center">
+
 
       <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
         🌙 Ramadan Countdown
