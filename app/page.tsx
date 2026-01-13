@@ -1,23 +1,32 @@
-'use client'
+import { toPng } from 'html-to-image'
 
-import Countdown from '@/components/Countdown'
-import Link from 'next/link'
+const waitForImage = async (el: HTMLElement) => {
+  return new Promise<void>((resolve) => {
+    const check = () => {
+      if (el.dataset.bgLoaded === 'true') {
+        resolve()
+      } else {
+        setTimeout(check, 100)
+      }
+    }
+    check()
+  })
+}
 
-export default function HomePage() {
-  return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6 text-center">
-      <h1 className="text-4xl font-bold mb-6">
-        🌙 Ramadan Countdown
-      </h1>
+const share = async () => {
+  const node = document.getElementById('card')
+  if (!node) return
 
-      <Countdown />
+  // ⏳ TUNGGU IMAGE SELESAI LOAD
+  await waitForImage(node)
 
-      <Link
-        href="/ayat"
-        className="mt-8 px-6 py-3 bg-emerald-500 rounded-full font-semibold"
-      >
-        Lihat Ayat Hari Ini
-      </Link>
-    </main>
-  )
+  const dataUrl = await toPng(node, {
+    pixelRatio: 2,
+    cacheBust: true,
+  })
+
+  const link = document.createElement('a')
+  link.download = 'ayat.png'
+  link.href = dataUrl
+  link.click()
 }
